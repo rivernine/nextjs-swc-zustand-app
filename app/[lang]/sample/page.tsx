@@ -1,7 +1,7 @@
-import StoreInitializer from '@/components/StoreInitializer';
-import ZustandCSRView from '@/components/ZustandCSRView';
-import ZustandSampleButton from '@/components/ZustandSampleButton';
-import ZustandSSRView from '@/components/ZustandSSRView';
+import StoreInitializer from '@/app/[lang]/components/StoreInitializer';
+import ZustandCSRView from '@/app/[lang]/components/ZustandCSRView';
+import ZustandSampleButton from '@/app/[lang]/components/ZustandSampleButton';
+import ZustandSSRView from '@/app/[lang]/components/ZustandSSRView';
 import { useStore } from '@/libs/stores/store';
 import Image from 'next/image'
 

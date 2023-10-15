@@ -1,9 +1,11 @@
-import StoreInitializer from '@/components/StoreInitializer'
+import StoreInitializer from '@/app/[lang]/components/StoreInitializer'
 import { useStore } from '@/libs/stores/store'
+import { getDictionary } from '@/i18n/get-dictionary'
 import Image from 'next/image'
 
-export default async function Home() {
+export default async function Home({ params }: any) {
 
+  const lang = await getDictionary(params.lang)
   const data = {
     title: "main",
     value: 200
@@ -19,7 +21,7 @@ export default async function Home() {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">app/page.tsx</code>
         </p>
-        <a href='/sample'>go to sample</a>
+        <a href='/sample'>{lang.routeButton.title}</a>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
