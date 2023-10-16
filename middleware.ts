@@ -35,7 +35,8 @@ export function middleware(request: NextRequest) {
       '/favicon.ico',
       '/next.svg',
       '/vercel.svg',
-      // Your other files in `public`
+      '/icons/menu.svg',
+      '/icons/close.svg',
     ].includes(pathname)
   )
     return
