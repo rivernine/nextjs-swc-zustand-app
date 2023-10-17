@@ -19,9 +19,9 @@ function MenuForMobile({
 
   return (
     <section className={`fixed inset-0 w-full z-50 bg-[#F2F6F9] transition-transform transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
-      <header className='flex items-center justify-between px-6 py-3 bg-signature'>
+      <header className='flex items-center justify-between px-6 py-4 bg-signature'>
         <a href='/'>
-          <Image src="./vercel.svg" alt="logo" className="dark:invert" width={100} height={24} />
+          <Image src="./logo-with-text.svg" alt="logo" width={160} height={35} />
         </a>
         <button className='w-8 h-8' onClick={handleCloseButtonClick}>
           <Image src="./icons/close.svg" alt="close-button" width={32} height={32} />
@@ -29,10 +29,10 @@ function MenuForMobile({
       </header>
       <nav className='flex flex-col px-4'>
         <a href='/' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-lg font-normal'>홈</h1>
+          <h1 className='text-base font-semibold'>홈</h1>
         </a>
         <a href='/sample' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-lg font-normal'>샘플페이지</h1>
+          <h1 className='text-base font-semibold'>샘플페이지</h1>
         </a>
       </nav>
     </section>
@@ -50,14 +50,14 @@ export default function Header() {
     <section className='flex items-center justify-center bg-signature w-full'>
       <article className='relative flex w-full items-center px-6 py-4 lg:gap-48 xl:max-w-[1280px]'>
         <a href='/'>
-          <Image src="./vercel.svg" alt="logo" className="dark:invert" width={100} height={24} />
+          <Image src="./logo-with-text.svg" alt="logo" className="dark:invert" width={160} height={35} />
         </a>
         <nav className='hidden justify-between items-center lg:flex gap-20'>
           <a href='/'>
-            <h1 className={`text-white text-md font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>홈</h1>
+            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>홈</h1>
           </a>
           <a href='/sample'>
-            <h1 className={`text-white text-md font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>샘플페이지</h1>
+            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>샘플페이지</h1>
           </a>
         </nav>
         <button className='absolute right-6 w-8 h-8 lg:hidden' onClick={handleMenuButtonClick}>

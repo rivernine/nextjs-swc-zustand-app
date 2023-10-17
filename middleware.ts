@@ -29,14 +29,12 @@ export function middleware(request: NextRequest) {
 
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one
+  console.log(pathname)
   if (
     [
       '/manifest.json',
-      '/favicon.ico',
       '/next.svg',
-      '/vercel.svg',
-      '/icons/menu.svg',
-      '/icons/close.svg',
+      '/logo-with-text.svg',
     ].includes(pathname)
   )
     return
@@ -63,5 +61,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icons).*)'],
 }
