@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useState } from 'react';
-import './header.css'
 
 interface MenuForMobile {
   isMenuOpen: boolean
