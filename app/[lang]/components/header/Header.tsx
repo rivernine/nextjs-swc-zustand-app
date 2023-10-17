@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react';
+import './header.css'
 
 interface MenuForMobile {
   isMenuOpen: boolean
@@ -50,7 +51,7 @@ export default function Header() {
     <section className='flex items-center justify-center bg-signature w-full'>
       <article className='relative flex w-full items-center px-6 py-4 lg:gap-48 xl:max-w-[1280px]'>
         <a href='/'>
-          <Image src="./logo-with-text.svg" alt="logo" className="dark:invert" width={160} height={35} />
+          <Image src="./logo-with-text.svg" alt="logo" width={160} height={35} />
         </a>
         <nav className='hidden justify-between items-center lg:flex gap-20'>
           <a href='/'>

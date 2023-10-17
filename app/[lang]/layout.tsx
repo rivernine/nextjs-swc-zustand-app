@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
-import Header from './components/Header'
+import Header from './components/header/Header'
 import Footer from './components/Footer'
 
 const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] })
