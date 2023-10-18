@@ -2,6 +2,9 @@
 
 import Image from 'next/image'
 import { useState } from 'react';
+import LogoWithText from '@/app/assets/brand/logo-with-text.svg'
+import MenuIcon from '@/app/assets/icons/menu.svg'
+import CloseIcon from '@/app/assets/icons/close.svg'
 
 interface MenuForMobile {
   isMenuOpen: boolean
@@ -21,10 +24,10 @@ function MenuForMobile({
     <section className={`fixed inset-0 w-full z-50 bg-[#F2F6F9] transition-transform transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
       <header className='flex items-center justify-between px-6 py-4 bg-signature'>
         <a href='/'>
-          <Image src="./logo-with-text.svg" alt="logo" width={160} height={35} />
+          <Image src={LogoWithText} alt="logo" width={160} height={35} />
         </a>
         <button className='w-8 h-8' onClick={handleCloseButtonClick}>
-          <Image src="./icons/close.svg" alt="close-button" width={32} height={32} />
+          <Image src={CloseIcon} alt="close-button" width={32} height={32} />
         </button>
       </header>
       <nav className='flex flex-col px-4'>
@@ -50,7 +53,7 @@ export default function Header() {
     <section className='flex items-center justify-center bg-signature w-full'>
       <article className='relative flex w-full items-center px-6 py-4 lg:gap-48 xl:max-w-[1280px]'>
         <a href='/'>
-          <Image src="./logo-with-text.svg" alt="logo" width={160} height={35} />
+          <Image src={LogoWithText} alt="logo" width={160} height={35} />
         </a>
         <nav className='hidden justify-between items-center lg:flex gap-20'>
           <a href='/'>
@@ -61,7 +64,7 @@ export default function Header() {
           </a>
         </nav>
         <button className='absolute right-6 w-8 h-8 lg:hidden' onClick={handleMenuButtonClick}>
-          <Image src="./icons/menu.svg" alt="menu-button" width={32} height={32} />
+          <Image src={MenuIcon} alt="menu-button" width={32} height={32} />
         </button>
       </article>
       <MenuForMobile isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
