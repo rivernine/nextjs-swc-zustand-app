@@ -33,8 +33,6 @@ export function middleware(request: NextRequest) {
   if (
     [
       '/manifest.json',
-      '/next.svg',
-      '/logo-with-text.svg',
     ].includes(pathname)
   )
     return
@@ -61,5 +59,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icons).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
 }
