@@ -1,8 +1,11 @@
 import './globals.css'
+import { NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import Header from './components/header/Header'
-import Footer from './components/Footer'
+import Footer from './components/footer/Footer'
+import { getDictionariesKeyObj } from '@/i18n/get-dictionary';
 
 const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -14,19 +17,33 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return getDictionariesKeyObj();
+}
+
+export default async function RootLayout({
   children,
-  params
+  params: { lang }
 }: {
   children: React.ReactNode,
   params: any
 }) {
+
+  let messages;
+  try {
+    messages = (await import(`../../i18n/dictionaries/${lang}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       <body className={notoSansKR.className}>
-        <Header />
-        {children}
-        <Footer />
+        <NextIntlClientProvider locale={lang} messages={messages}>
+          <Header />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

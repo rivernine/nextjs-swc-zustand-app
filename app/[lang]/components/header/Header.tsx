@@ -5,17 +5,19 @@ import { useState } from 'react';
 import LogoWithText from '@/app/assets/brand/logo-with-text.svg'
 import MenuIcon from '@/app/assets/icons/menu.svg'
 import CloseIcon from '@/app/assets/icons/close.svg'
+import { useTranslations } from 'next-intl';
 
 interface MenuForMobile {
-  isMenuOpen: boolean
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function MenuForMobile({
   isMenuOpen,
-  setIsMenuOpen
+  setIsMenuOpen,
 }: MenuForMobile) {
 
+  const t = useTranslations('header.navigation');
   const handleCloseButtonClick = () => {
     setIsMenuOpen(false);
   }
@@ -32,10 +34,14 @@ function MenuForMobile({
       </header>
       <nav className='flex flex-col px-4'>
         <a href='/' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-base font-semibold'>홈</h1>
+          <h1 className='text-base font-semibold'>
+            {t('home')}
+          </h1>
         </a>
         <a href='/sample' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-base font-semibold'>샘플페이지</h1>
+          <h1 className='text-base font-semibold'>
+            {t('sample')}
+          </h1>
         </a>
       </nav>
     </section>
@@ -44,6 +50,7 @@ function MenuForMobile({
 
 export default function Header() {
 
+  const t = useTranslations('header.navigation');
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const handleMenuButtonClick = () => {
     setIsMenuOpen(true);
@@ -57,10 +64,14 @@ export default function Header() {
         </a>
         <nav className='hidden justify-between items-center lg:flex gap-20'>
           <a href='/'>
-            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>홈</h1>
+            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>
+              {t('home')}
+            </h1>
           </a>
           <a href='/sample'>
-            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>샘플페이지</h1>
+            <h1 className={`text-white text-base font-bold hover:text-sub-1 hover:cursor-pointer transition-all duration-200`}>
+              {t('sample')}
+            </h1>
           </a>
         </nav>
         <button className='absolute right-6 w-8 h-8 lg:hidden' onClick={handleMenuButtonClick}>

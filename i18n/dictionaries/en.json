@@ -1,4 +1,10 @@
 {
+  "header": {
+    "navigation": {
+      "home": "Home",
+      "sample": "Sample"
+    }
+  },
   "routeButton": {
     "title": "go to sample"
   }
