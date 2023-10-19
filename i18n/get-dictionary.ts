@@ -10,15 +10,3 @@ const dictionaries = {
 
 export const getDictionary = async (locale: Locale) =>
   dictionaries[locale]?.() ?? dictionaries.en()
-
-export const getDictionariesKeyObj = () => {
-  return Object.keys(dictionaries).map((key) => {
-    return { lang: key }
-  })
-}
-
-export const getDictionariesKey = () => {
-  return Object.keys(dictionaries).map((key) => {
-    return key
-  })
-}
