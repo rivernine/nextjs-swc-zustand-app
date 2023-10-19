@@ -1,63 +1,54 @@
 "use client";
 
 import Image from 'next/image'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LogoWithText from '@/app/assets/brand/logo-with-text.svg'
 import MenuIcon from '@/app/assets/icons/menu.svg'
-import CloseIcon from '@/app/assets/icons/close.svg'
-import { useTranslations } from 'next-intl';
-
-interface MenuForMobile {
-  isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function MenuForMobile({
-  isMenuOpen,
-  setIsMenuOpen,
-}: MenuForMobile) {
-
-  const t = useTranslations('header.navigation');
-  const handleCloseButtonClick = () => {
-    setIsMenuOpen(false);
-  }
-
-  return (
-    <section className={`fixed inset-0 w-full z-50 bg-[#F2F6F9] transition-transform transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
-      <header className='flex items-center justify-between px-6 py-4 bg-signature'>
-        <a href='/'>
-          <Image src={LogoWithText} alt="logo" width={160} height={35} />
-        </a>
-        <button className='w-8 h-8' onClick={handleCloseButtonClick}>
-          <Image src={CloseIcon} alt="close-button" width={32} height={32} />
-        </button>
-      </header>
-      <nav className='flex flex-col px-4'>
-        <a href='/' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-base font-semibold'>
-            {t('home')}
-          </h1>
-        </a>
-        <a href='/sample' className='flex items-center gap-2 px-2 py-3 border-b-[1px] border-lightgray hover:text-signature hover:cursor-pointer transition-all duration-200'>
-          <h1 className='text-base font-semibold'>
-            {t('sample')}
-          </h1>
-        </a>
-      </nav>
-    </section>
-  )
-}
+import { useLocale, useTranslations } from 'next-intl';
+import { getCountryImageBy2Code } from '@/libs/utils/country';
+import MobileMenu from './components/MobileMenu';
+import LanguageTooltip from './components/LanguageTooltip';
 
 export default function Header() {
 
+  const languageRef = useRef<HTMLDivElement | null>(null);
+
+  const lang = useLocale();
   const t = useTranslations('header.navigation');
+  const l = useTranslations('header.language');
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState<boolean>(false);
+
+  const CountryImg = getCountryImageBy2Code(lang);
+
   const handleMenuButtonClick = () => {
     setIsMenuOpen(true);
   }
 
+  const handleLanguageClick = () => {
+    setIsLanguageOpen(!isLanguageOpen)
+  }
+
+  const closeLanguage = () => {
+    setIsLanguageOpen(false);
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+        closeLanguage()
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+
   return (
-    <section className='flex items-center justify-center bg-signature w-full'>
+    <section className='flex items-center justify-center bg-signature w-full select-none'>
       <article className='relative flex w-full items-center px-6 py-4 lg:gap-48 xl:max-w-[1280px]'>
         <a href='/'>
           <Image src={LogoWithText} alt="logo" width={160} height={35} />
@@ -77,8 +68,15 @@ export default function Header() {
         <button className='absolute right-6 w-8 h-8 lg:hidden' onClick={handleMenuButtonClick}>
           <Image src={MenuIcon} alt="menu-button" width={32} height={32} />
         </button>
+        <div className='group absolute overflow-visible hidden right-6 justify-center items-center gap-2 p-2 rounded-md lg:flex hover:bg-sub-2 hover:bg-opacity-10 hover:cursor-pointer active:translate-y-1'
+          onClick={handleLanguageClick}
+          ref={languageRef}>
+          <p className='text-sm text-white font-medium'>{l('title')}</p>
+          <Image src={CountryImg} alt={`${lang}-logo`} width={28} height={28} />
+        </div>
+        <LanguageTooltip lang={lang} isOpen={isLanguageOpen} />
       </article>
-      <MenuForMobile isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <MobileMenu lang={lang} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </section>
   )
 }

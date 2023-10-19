@@ -3,9 +3,16 @@
     "navigation": {
       "home": "홈",
       "sample": "샘플"
+    },
+    "language": {
+      "title": "한국어"
     }
   },
   "routeButton": {
     "title": "샘플페이지"
+  },
+  "languages": {
+    "en": "영어",
+    "ko": "한국어"
   }
 }

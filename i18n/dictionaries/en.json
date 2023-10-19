@@ -3,9 +3,16 @@
     "navigation": {
       "home": "Home",
       "sample": "Sample"
+    },
+    "language": {
+      "title": "English"
     }
   },
   "routeButton": {
     "title": "go to sample"
+  },
+  "languages": {
+    "en": "English",
+    "ko": "Korean"
   }
 }
