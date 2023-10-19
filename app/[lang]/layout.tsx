@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
-import { getDictionariesKeyObj } from '@/i18n/get-dictionary';
+import { getCountriesKeyObj } from '@/libs/utils/country';
 
 const notoSansKR = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export function generateStaticParams() {
-  return getDictionariesKeyObj();
+  return getCountriesKeyObj();
 }
 
 export default async function RootLayout({

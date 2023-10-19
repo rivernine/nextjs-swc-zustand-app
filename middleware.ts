@@ -1,8 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
-import { getDictionariesKey } from './i18n/get-dictionary';
+import { getCountriesKey } from './libs/utils/country';
 
 export default createMiddleware({
-  locales: getDictionariesKey(),
+  locales: getCountriesKey(),
   localePrefix: 'always',
   defaultLocale: 'ko',
   localeDetection: true,
