@@ -1,5 +1,9 @@
 {
-  "header": {
+  "Languages": {
+    "en": "English",
+    "ko": "Korean"
+  },
+  "Header": {
     "navigation": {
       "home": "Home",
       "sample": "Sample"
@@ -8,11 +12,10 @@
       "title": "English"
     }
   },
-  "routeButton": {
+  "HomePage": {
     "title": "go to sample"
   },
-  "languages": {
-    "en": "English",
-    "ko": "Korean"
+  "MobileLanguageSelector": {
+    "title": "Select Language"
   }
 }

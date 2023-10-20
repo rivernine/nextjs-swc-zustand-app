@@ -7,18 +7,18 @@ import MenuIcon from '@/app/assets/icons/menu.svg'
 import { useLocale, useTranslations } from 'next-intl';
 import { getCountryImageBy2Code } from '@/libs/utils/country';
 import MobileMenu from './components/MobileMenu';
-import LanguageTooltip from './components/LanguageTooltip';
+import LanguageSelector from './components/LanguageSelector';
 
 export default function Header() {
 
   const languageRef = useRef<HTMLDivElement | null>(null);
 
   const lang = useLocale();
-  const t = useTranslations('header.navigation');
-  const l = useTranslations('header.language');
+  const t = useTranslations('Header.navigation');
+  const l = useTranslations('Header.language');
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState<boolean>(false);
+  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState<boolean>(false);
 
   const CountryImg = getCountryImageBy2Code(lang);
 
@@ -27,17 +27,17 @@ export default function Header() {
   }
 
   const handleLanguageClick = () => {
-    setIsLanguageOpen(!isLanguageOpen)
+    setIsLanguageSelectorOpen(!isLanguageSelectorOpen)
   }
 
-  const closeLanguage = () => {
-    setIsLanguageOpen(false);
+  const closeLanguageSelector = () => {
+    setIsLanguageSelectorOpen(false);
   }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
-        closeLanguage()
+        closeLanguageSelector()
       }
     };
     document.addEventListener('click', handleClickOutside);
@@ -68,13 +68,13 @@ export default function Header() {
         <button className='absolute right-6 w-8 h-8 lg:hidden' onClick={handleMenuButtonClick}>
           <Image src={MenuIcon} alt="menu-button" width={32} height={32} />
         </button>
-        <div className='group absolute overflow-visible hidden right-6 justify-center items-center gap-2 p-2 rounded-md lg:flex hover:bg-sub-2 hover:bg-opacity-10 hover:cursor-pointer active:translate-y-1'
+        <div className='absolute hidden right-6 justify-center items-center gap-2 p-2 rounded-md lg:flex hover:bg-sub-2 hover:bg-opacity-10 hover:cursor-pointer active:translate-y-1'
           onClick={handleLanguageClick}
           ref={languageRef}>
           <p className='text-sm text-white font-medium'>{l('title')}</p>
           <Image src={CountryImg} alt={`${lang}-logo`} width={28} height={28} />
         </div>
-        <LanguageTooltip lang={lang} isOpen={isLanguageOpen} />
+        <LanguageSelector lang={lang} isOpen={isLanguageSelectorOpen} />
       </article>
       <MobileMenu lang={lang} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </section>
