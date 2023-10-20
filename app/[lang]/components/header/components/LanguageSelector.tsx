@@ -18,7 +18,7 @@ export default function LanguageTooltip({
 
   const pathname = usePathname();
   const pathnameWithoutLang = pathname.slice(3);
-  const languages = useTranslations('languages');
+  const languages = useTranslations('Languages');
   const countryKeys = getCountriesKey();
 
   return (

@@ -5,6 +5,8 @@ import { getCountryImageBy2Code } from "@/libs/utils/country";
 import { useTranslations } from "next-intl";
 import LogoWithText from '@/app/assets/brand/logo-with-text.svg'
 import CloseIcon from '@/app/assets/icons/close.svg'
+import { useState } from 'react';
+import MobileLanguageSelector from './MobileLanguageSelector';
 
 interface MobileMenuProps {
   lang: string,
@@ -18,14 +20,31 @@ export default function MobileMenu({
   setIsMenuOpen,
 }: MobileMenuProps) {
 
-  const t = useTranslations('header.navigation');
+  const t = useTranslations('Header.navigation');
+  const l = useTranslations('Header.language');
+
+  const [isLanguageSelectorOpen, setIsLanguageSelectorOpen] = useState<boolean>(false);
+
+  const CountryImg = getCountryImageBy2Code(lang);
+
   const handleCloseButtonClick = () => {
     setIsMenuOpen(false);
   }
-  const CountryImg = getCountryImageBy2Code(lang);
+
+  const handleLanguageSelectorClick = () => {
+    openLanguageSelector();
+  }
+
+  const openLanguageSelector = () => {
+    setIsLanguageSelectorOpen(true);
+  }
+
+  const closeLanguageSelector = () => {
+    setIsLanguageSelectorOpen(false);
+  }
 
   return (
-    <main className={`fixed inset-0 w-full z-50 bg-[#F2F6F9] transition-transform transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
+    <main className={`fixed inset-0 w-full z-50 bg-gradient-to-b from-[#F2F6F9] from-[5%] via-[#F2F6F9] via-[10%] to-white transition-transform transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden`}>
       <header className='flex items-center justify-between px-6 py-4 bg-signature'>
         <a href='/'>
           <Image src={LogoWithText} alt="logo" width={160} height={35} />
@@ -47,10 +66,18 @@ export default function MobileMenu({
         </a>
       </nav>
       <footer className='flex justify-center items-cente mt-40'>
-        <div className='flex justify-center items-center p-2 rounded-full hover:bg-signature hover:bg-opacity-10 hover:cursor-pointer active:translate-y-1'>
+        <div className='flex justify-center items-center gap-2 py-2 px-4 rounded-md bg-sub-4 border-sub-4 border-[1px] hover:bg-white hover:border-[1px] hover:border-signature hover:bg-opacity-10 hover:cursor-pointer'
+          onClick={handleLanguageSelectorClick}
+        >
+          <p className='text-sm text-black font-medium'>{l('title')}</p>
           <Image src={CountryImg} alt={`${lang}-logo`} width={28} height={28} />
         </div>
       </footer>
+      <MobileLanguageSelector
+        lang={lang}
+        isOpen={isLanguageSelectorOpen}
+        onClose={closeLanguageSelector}
+      />
     </main>
   )
 }
