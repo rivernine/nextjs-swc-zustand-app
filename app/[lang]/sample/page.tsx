@@ -1,7 +1,7 @@
-import StoreInitializer from '../components/StoreInitializer';
-import ZustandCSRView from '../components/ZustandCSRView';
-import ZustandSampleButton from '../components/ZustandSampleButton';
-import ZustandSSRView from '../components/ZustandSSRView';
+import StoreInitializer from '../../components/StoreInitializer';
+import ZustandCSRView from '../../components/ZustandCSRView';
+import ZustandSampleButton from '../../components/ZustandSampleButton';
+import ZustandSSRView from '../../components/ZustandSSRView';
 import { useStore } from '@/libs/stores/store';
 
 async function Sample() {

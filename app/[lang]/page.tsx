@@ -1,4 +1,4 @@
-import StoreInitializer from './components/StoreInitializer'
+import StoreInitializer from '../components/StoreInitializer'
 import { useStore } from '@/libs/stores/store'
 import { getDictionary } from '@/i18n/get-dictionary'
 import Link from 'next/link'

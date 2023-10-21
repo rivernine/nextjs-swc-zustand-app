@@ -3,8 +3,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
-import Header from './components/header/Header'
-import Footer from './components/footer/Footer'
+import Header from '../components/header/Header'
+import Footer from '../components/footer/Footer'
 import { getCountriesKeyObj } from '@/libs/utils/country';
 import { getDictionary } from '@/i18n/get-dictionary';
 
