@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.2",
-    "axios": "^1.5.1",
     "negotiator": "^0.6.3",
     "next": "13.5.4",
     "next-intl": "^2.20.2",
